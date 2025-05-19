@@ -1,0 +1,1 @@
+web: gunicorn cookie_scanner.wsgi:application

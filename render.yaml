@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: cookie-scanner
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn cookie_scanner.wsgi:application
+    plan: free
