@@ -13,8 +13,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 import tempfile
 import uuid
+import shutil
 
 VALID_API_KEYS = ['abc123']
+
+def get_chrome_path():
+        # Spróbuj znaleźć Chromium w typowych miejscach
+        return shutil.which("chromium") or shutil.which("chromium-browser") or "/usr/bin/chromium"
 
 class CookieScanView(APIView):
     def post(self, request):
@@ -47,6 +52,7 @@ class CookieScanView(APIView):
 
     def scan_cookies(self, domain):
         options = Options()
+        options.binary_location = get_chrome_path()  # <- ważne!
         options.add_argument("--headless")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
