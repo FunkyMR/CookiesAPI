@@ -1,1 +1,1 @@
-web: gunicorn cookie_scanner.wsgi:application
+web: gunicorn cookie_scanner.wsgi:application --timeout 120
